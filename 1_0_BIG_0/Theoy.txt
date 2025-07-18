@@ -194,5 +194,19 @@ some common type of algorithm::::
 | Graph Algorithms     | BFS, DFS, Dijkstra’s         |
 
 ===============================================================
+Resource Utilize :::
+        to understand this we need to manage our resource and processer
+
+
+================================================================
+processor operations ::
+
+issue we can't get proper result ussing running system status because it dependes on old or new system 
+
+
+Algorithm => processer operator 
+
+            = sum of all individual operations 
+
 
 
