@@ -193,5 +193,6 @@ some common type of algorithm::::
 | Backtracking         | N-Queens, Sudoku Solver      |
 | Graph Algorithms     | BFS, DFS, Dijkstra’s         |
 
+===============================================================
 
 
