@@ -1,0 +1,104 @@
+Why Strings Matter in DSA
+Although strings are often seen as just text, in DSA, strings are sequences (like arrays). That makes them data structures by definition.
+
+Strings are involved in some of the most common algorithm problems like:
+
+Real DSA Use-Cases:
+Concept	                        Relevance to DSA
+Slicing, Indexing	            Like array manipulation
+String reversal	                Common in recursion and stack questions
+Palindrome check	            Common interview problem
+Anagram check	                Frequency counting (Hash Maps)
+Substring search	            Pattern Matching (KMP, Rabin-Karp)
+Character frequency	            Hashing, Counting Sort idea
+Sliding window	                Used for substring search, longest substring without repeat
+Dynamic programming	            Problems like Longest Common Subsequence (LCS)
+Tries	                        Efficient prefix/string matching
+==========================================================
+
+==> String Slicing (Substring) 
+------------------------------------
+s = "Programming"
+print(s[0:6])     # 'Progra'
+print(s[:5])      # 'Progr'
+print(s[3:])      # 'gramming'
+print(s[::-1])    # Reverse the string
+-------------------------------------
+Immutability of Strings
+
+s = "Hello"
+s[0] = "Y"   #  Error: 'str' object does not support item assignment
+
+========================================
+s = "Hello"
+s = "Y" + s[1:]  # 'Yello'
+========================================
+
+==> String Concatenation and Repetition
+
+print("Py" + "thon")  # Concatenation
+print("Ha" * 3)       # Repetition -> 'HaHaHa'
+
+
+=======================================
+s = "  Hello Python  "
+print(s.strip())         # 'Hello Python'
+print(s.upper())         # '  HELLO PYTHON  '
+print(s.replace("Python", "World"))  # '  Hello World  '
+
+
+=======================================
+Looping through a String
+
+s = "data"
+for ch in s:
+    print(ch)
+
+======================================
+problems :::: 
+
+1)  Reverse a String
+
+def reverse(s):
+    return s[::-1]
+
+------------------------------------------
+2) Palindrome Check
+
+def is_palindrome(s):
+    return s == s[::-1]
+------------------------------------------
+
+3) Count Vowels and Consonants
+
+def count_vowels_consonants(s):
+    vowels = 'aeiouAEIOU'
+    v = c = 0
+    for ch in s:
+        if ch.isalpha():
+            if ch in vowels:
+                v += 1
+            else:
+                c += 1
+    return v, c
+
+------------------------------------------
+4) Remove Duplicates
+
+# remove duplicates from string 
+
+def removeDuplicates(s):
+    result = ""
+    for char in s:
+        if char not in result:
+            result+=char
+    
+    return result
+
+s = "programing"
+print(removeDuplicates(s))
+
+
+------------------------------------------
+
+

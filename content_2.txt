@@ -1,0 +1,163 @@
+Great! Here's a full **DSA (Data Structures and Algorithms)** roadmap using **Python**, structured from **scratch to advanced**:
+
+---
+
+## 🔰 Beginner Level: Python Basics for DSA
+
+### ✅ Week 1: Python Fundamentals (if not confident already)
+
+* Variables, Data Types
+* Control Flow (if, elif, else)
+* Loops (for, while)
+* Functions (def, return, \*args, \*\*kwargs)
+* Lists, Tuples, Sets, Dictionaries
+* Input/Output
+* Exception Handling
+
+---
+
+## 🧱 Week 2: Core Data Structures in Python
+
+### 1. **Arrays / Lists**
+
+* Accessing, inserting, deleting, updating
+* Time complexity of operations
+* List comprehensions
+* Slicing
+
+### 2. **Strings**
+
+* String manipulation
+* String methods
+* String slicing
+* Pattern problems
+
+---
+
+## 📦 Week 3: Built-in & Custom Data Structures
+
+### 3. **Stacks**
+
+* LIFO principle
+* Using list or `collections.deque`
+* Infix to postfix conversion
+* Balanced parentheses
+
+### 4. **Queues**
+
+* FIFO principle
+* Implementation using `deque`
+* Circular Queue
+* Priority Queue (using `heapq` or class)
+
+### 5. **Linked Lists**
+
+* Singly Linked List
+* Doubly Linked List
+* Circular Linked List
+* Reversing a Linked List
+
+---
+
+## 🌲 Week 4: Tree Data Structures
+
+### 6. **Binary Trees**
+
+* Preorder, Inorder, Postorder
+* Level-order traversal (BFS)
+* Height, diameter
+* Mirror tree
+
+### 7. **Binary Search Trees (BST)**
+
+* Insert, delete, search
+* Floor, ceil, range sum
+* BST validation
+
+---
+
+## 🌉 Week 5: Advanced Trees & Tries
+
+### 8. **Heaps**
+
+* Min heap, Max heap
+* Heapify and `heapq` module
+* Priority Queue with heap
+
+### 9. **Trie (Prefix Tree)**
+
+* Insert and search
+* Autocomplete feature
+* Word dictionary problems
+
+---
+
+## 🔗 Week 6: Hashing
+
+### 10. **Hash Tables / Hash Maps**
+
+* Python dictionary implementation
+* Collision handling
+* Use cases: frequency counter, anagram problems
+
+---
+
+## 🔁 Week 7: Recursion & Backtracking
+
+### 11. **Recursion**
+
+* Factorial, Fibonacci
+* Tower of Hanoi
+* Recursive tree traversal
+
+### 12. **Backtracking**
+
+* N-Queens
+* Sudoku Solver
+* Subsets & Permutations
+
+---
+
+## 🚀 Week 8: Searching & Sorting Algorithms
+
+### 13. **Searching**
+
+* Linear Search
+* Binary Search
+* Search in rotated sorted array
+
+### 14. **Sorting**
+
+* Bubble, Selection, Insertion
+* Merge Sort, Quick Sort
+* Counting & Radix Sort
+
+---
+
+## 🔗 Week 9: Graphs
+
+### 15. **Graph Basics**
+
+* Representation (Adjacency List / Matrix)
+* BFS & DFS
+* Detect Cycle (directed/undirected)
+
+### 16. **Graph Algorithms**
+
+* Dijkstra’s Algorithm
+* Topological Sorting
+* Union-Find (Disjoint Set)
+* Kruskal’s & Prim’s for MST
+
+---
+
+## 🧠 Week 10: Dynamic Programming (DP)
+
+### 17. **Intro to DP**
+
+* Recursion vs Memoization vs Tabulation
+* 0/1 Knapsack
+* Longest Common Subsequence
+* Matrix Chain Multiplication
+* DP on Trees and Graphs
+
