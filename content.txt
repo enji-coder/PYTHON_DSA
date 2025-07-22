@@ -1,18 +1,27 @@
 — Fundamentals
 Week 1: Algorithm Analysis + Python Review
  Topics: Big-O, Θ, Ω; Python basics & OOP
+
 Week 2: Lists, Strings, Sets & Dicts  Topics: Python operations, slicing, parsing
+
 Week 3: Recursion & Bitwise
  Topics: Recursion types, tower of Hanoi; Bits: set-bit count, kth-bit
+
 Week 4: Searching & Sorting
  Topics: Linear/binary search; Bubble, merge, quick sort — Core DSA
+
 Week 5: Stack, Queue, Deque
  Implement using lists & linked lists
 Week 6: Linked Lists  Singly, doubly, circular lists + CRUD
+
 Week 7: Hashing & Heaps  Collision, chaining; Python heapq
+
 Week 8: Trees & BSTs  Tree traversal, search, insert
+
 Week 9: Graphs & Traversals  Adjacency list, BFS, DFS
+
 Week 10: Greedy & Divide‑ Conquer  Interval scheduling, coin change
+
 Weeks 15–16 — Mock Interviews & Review
 - Mock Interview 1: Data structures + behavior
 - Mock Interview 2: Algorithms (graphs, DP)

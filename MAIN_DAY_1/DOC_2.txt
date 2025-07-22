@@ -1,0 +1,11 @@
+week 2 :::
+============================
+|  Topic                | What You’ll Learn                              |
+| ------------------------| ------------------------------------------------- |
+| 1. Lists                | Store multiple values, indexing, slicing, methods |
+| 2. Strings              | Handle text, slicing, parsing, operations         |
+| 3. Sets                 | Unique data storage, set operations               |
+| 4. Dicts (Dictionaries) | Key-value storage, fast lookups                   |
+| 5. Slicing & Parsing    | Extract and work with parts of lists/strings      |
+
+

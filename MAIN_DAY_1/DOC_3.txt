@@ -1,0 +1,476 @@
+==>> Searching Algorithms
+==============================
+| Algorithm                | Speed       |  When to Use?               |
+| ------------------------ | ----------- | ----------------------------- |
+| 1 Linear Search        | Slow        | Unsorted lists                |
+| 2 Binary Search        | Fast        | Sorted lists                  |
+| 3 Jump Search          | Medium      | Sorted lists                  |
+| 4 Interpolation Search | Smart Guess | Sorted, uniform data          |
+| 5 Exponential Search   | Very Fast   | Infinite or huge sorted lists |
+| 6 Hash-Based Search    | Super Fast  | Direct lookup using keys      |
+
+===========================================
+1) Linear Search :
+
+    check one by one 
+
+    works on sorted or unsorted list.   
+    Linear Search is the simplest search algorithm.
+    You go through each element one by one, and check:
+
+===============================
+when to use linear search 
+
+-> the list is unsorted 
+
+-> you don't care about performance for small data 
+
+-> you need to search every item anyway.
+
+==============================================================
+How Linear Search Works (Step-by-Step)
+
+e.g.  arr = [5,4,3,1,8,6]
+        target = 1
+
+steps : 
+
+-> check index 0 -> 5 X
+-> check index 1 -> 4 X 
+-> check index 2 -> 3 X
+-> check index 1 -> 1  target found 
+-> done 
+
+e.g.
+--------------------------------------
+def linear_search(arr,target):
+    for i in range(len(arr)):
+        if arr[i] == target:
+            return i 
+    return "not found"
+
+
+arr = [5,4,3,1,8,6]
+print(linear_search(arr,1))   # it return which index position contain this
+--------------------------------------
+
+Time Complexity of Linear Search
+
+| Case       | Steps Taken               | Time Complexity |
+| -----------| ------------------------- | --------------- |
+| Best Case  | Found at start            | Ω(1)            |
+| Worst Case | At the end or not found   | O(n)            |
+| Average    | Found somewhere in middle | Θ(n)            |
+
+
+Space Complexity
+No extra memory used → O(1)
+
+==================================================================
+Linear Search Practicals 
+
+1) problem : Write a function to check if a number exists in a list. Return True/False.
+
+def search_element(arr, target):
+    for num in arr:
+        if num == target:
+            return True
+    return False
+
+# Example:
+print(search_element([1, 2, 3, 4, 5], 3))  # True
+print(search_element([1, 2, 3, 4, 5], 10)) # False
+
+2) problem :  Find Index of Target
+
+Return the index of the first occurrence of target. If not found, return -1.
+
+def find_index(arr, target):
+    for i in range(len(arr)):
+        if arr[i] == target:
+            return i
+    return -1
+
+# Example:
+print(find_index([10, 20, 30, 40], 30))  # 2
+print(find_index([10, 20, 30, 40], 100)) # -1
+
+
+3) Count Occurrences
+
+Problem:
+Count how many times a target number appears in the list.
+
+def count_occurrences(arr, target):
+    count = 0
+    for num in arr:
+        if num == target:
+            count += 1
+    return count
+
+# Example:
+print(count_occurrences([1, 2, 2, 3, 2, 4], 2))  # 3
+
+
+4) Find All Index Positions of Target
+
+Problem:
+Return a list of all index positions where target occurs.
+
+def find_all_positions(arr, target):
+    positions = []
+    for i in range(len(arr)):
+        if arr[i] == target:
+            positions.append(i)
+    return positions
+
+# Example:
+print(find_all_positions([5, 3, 5, 1, 5], 5))  # [0, 2, 4]
+
+
+5)  Search in 2D List
+
+Problem:
+Search for a target in a 2D list (matrix). Return row, column position if found.
+
+def search_2d(matrix, target):
+    for i in range(len(matrix)):
+        for j in range(len(matrix[i])):
+            if matrix[i][j] == target:
+                return (i, j)
+    return (-1, -1)
+
+# Example:
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+print(search_2d(matrix, 5))  # (1, 1)
+print(search_2d(matrix, 10)) # (-1, -1)
+
+
+6) Find Maximum Element in List
+
+def find_max(arr):
+    max_value = arr[0]
+    for num in arr:
+        if num > max_value:
+            max_value = num
+    return max_value
+
+# Example:
+print(find_max([10, 50, 20, 80, 30]))  # 80
+
+7)  Find Minimum Element in List
+
+def find_min(arr):
+    min_value = arr[0]
+    for num in arr:
+        if num < min_value:
+            min_value = num
+    return min_value
+
+# Example:
+print(find_min([10, 5, 20, 3, 30]))  # 3
+
+
+8) Check if List is Strictly Increasing
+
+def is_strictly_increasing(arr):
+    for i in range(len(arr) - 1):
+        if arr[i] >= arr[i+1]:
+            return False
+    return True
+
+# Example:
+print(is_strictly_increasing([1, 2, 3, 4]))  # True
+print(is_strictly_increasing([1, 3, 2, 4]))  # False
+
+
+9) Move All Zeros to End of List
+
+def move_zeros_to_end(arr):
+    result = [num for num in arr if num != 0]
+    result += [0] * (len(arr) - len(result))
+    return result
+
+# Example:
+print(move_zeros_to_end([1, 0, 2, 0, 3, 0, 4]))  # [1, 2, 3, 4, 0, 0, 0]
+
+
+lets understand with ::: 
+
+# for i in range(4, -1, -1):
+#     print(i)
+
+
+10) Reverse a List (Without Using Built-in Reverse)
+
+def reverse_list(arr):
+    reversed_list = []
+    for i in range(len(arr) - 1, -1, -1):
+        reversed_list.append(arr[i])
+    return reversed_list
+
+# Example:
+print(reverse_list([1, 2, 3, 4, 5]))  # [5, 4, 3, 2, 1]
+
+
+11)  Sum of All Even Numbers
+
+def sum_of_even(arr):
+    total = 0
+    for num in arr:
+        if num % 2 == 0:
+            total += num
+    return total
+
+# Example:
+print(sum_of_even([1, 2, 3, 4, 5, 6]))  # 12
+
+
+12) Remove All Occurrences of Target Number
+
+def remove_target(arr, target):
+    result = []
+    for num in arr:
+        if num != target:
+            result.append(num)
+    return result
+
+# Example:
+print(remove_target([1, 2, 3, 2, 4, 2, 5], 2))  # [1, 3, 4, 5]
+
+
+13) Search for Element in Reverse Order (Last Occurrence)
+
+def reverse_linear_search(arr, target):
+    for i in range(len(arr) - 1, -1, -1):
+        if arr[i] == target:
+            return i
+    return -1
+
+# Example:
+print(reverse_linear_search([1, 2, 3, 2, 4], 2))  # 3 (last occurrence)
+
+
+# for i in range(4, -1, -1):
+#     print(i)
+
+
+"""-----------------------------------------------------------
+What is float('-inf')?
+In Python, float('-inf') means:
+
+➔ Negative Infinity
+
+Think of it like the smallest possible number in the world.
+
+Example:
+
+print(float('-inf'))
+Output:
+
+-inf
+
+It is smaller than any number, even -99999999.
+
+Example: Why Use Negative Infinity?
+Let’s say we want to find the biggest number in a list.
+
+But at the start, we don’t know what number will come.
+So, we set our starting value to Negative Infinity, which is very small.
+
+Then, we compare each number in the list.
+
+""""""-----------------------------------------------------------
+
+
+# first = second = float('-inf')
+
+# print(first)
+# print(second)
+
+
+
+
+14) Find Second Largest Element
+
+def second_largest(arr):
+    first = second = float('-inf')
+    for num in arr:
+        if num > first:
+            second = first
+            first = num
+        elif num > second and num != first:
+            second = num
+    return second
+
+# Example:
+print(second_largest([5, 1, 8, 3, 7]))  # 7
+
+
+15) Find First Repeated Element
+
+def first_repeated(arr):
+    seen = []
+    for num in arr:
+        if num in seen:
+            return num
+        seen.append(num)
+    return None  # No repeats found
+
+# Example:
+print(first_repeated([5, 3, 4, 5, 2, 3]))  # 5
+print(first_repeated([1, 2, 3, 4]))        # None
+
+16) Find All Pairs with Given Sum
+
+Find all unique pairs in a list that add up to a specific sum.
+
+def find_pairs(arr, target_sum):
+    pairs = []
+    for i in range(len(arr)):
+        for j in range(i+1, len(arr)):
+            if arr[i] + arr[j] == target_sum:
+                pairs.append((arr[i], arr[j]))
+    return pairs
+
+# Example:
+print(find_pairs([1, 2, 3, 4, 5], 5))  # [(1, 4), (2, 3)]
+
+17) Separate Positive and Negative Numbers
+Move all negative numbers to the end (order doesn’t matter).
+
+def separate_numbers(arr):
+    positive = []
+    negative = []
+    for num in arr:
+        if num >= 0:
+            positive.append(num)
+        else:
+            negative.append(num)
+    return positive + negative
+
+# Example:
+print(separate_numbers([1, -2, 3, -4, 5, -6]))  # [1, 3, 5, -2, -4, -6]
+
+18) Find Majority Element
+
+def majority_element(arr):
+    for num in arr:
+        count = 0
+        for item in arr:
+            if item == num:
+                count += 1
+        if count > len(arr) // 2:
+            return num
+    return None
+
+# Example:
+print(majority_element([3, 3, 4, 3, 3]))  # 3
+print(majority_element([1, 2, 3]))        # None
+
+19) Find Minimum Positive Element
+Find smallest positive number (greater than zero).
+
+def find_min_positive(arr):
+    min_value = float('inf')
+    for num in arr:
+        if num > 0 and num < min_value:
+            min_value = num
+    return min_value if min_value != float('inf') else None
+
+# Example:
+print(find_min_positive([3, -1, 0, 2, -5, 1]))  # 1
+
+20) Find All Numbers Greater Than Average
+Find all elements bigger than the average value of the list.
+
+def greater_than_average(arr):
+    avg = sum(arr) / len(arr)
+    result = []
+    for num in arr:
+        if num > avg:
+            result.append(num)
+    return result
+
+# Example:
+print(greater_than_average([10, 20, 30, 40, 50]))  # [40, 50]
+
+21) Find Intersection of Two Lists
+Return common elements between two lists.
+
+def find_intersection(list1, list2):
+    result = []
+    for num in list1:
+        if num in list2 and num not in result:
+            result.append(num)
+    return result
+
+# Example:
+print(find_intersection([1, 2, 3, 4], [3, 4, 5, 6]))  # [3, 4]
+
+
+22) Replace Every Element with Its Square
+
+def square_elements(arr):
+    result = []
+    for num in arr:
+        result.append(num * num)
+    return result
+
+# Example:
+print(square_elements([1, 2, 3, 4]))  # [1, 4, 9, 16]
+
+=========================================================
+Project Idea:
+Build a Contact Search System where:
+
+You store names in a list (contact names).
+
+You can search any name using Linear Search.
+
+Show whether the name exists or not.
+
+Search must be case-insensitive.
+
+Optionally, display the index where the contact was found.
+
+Solution :::
+
+# Contact List - Example Data
+contacts = [
+    "Alice Johnson",
+    "Bob Smith",
+    "Charlie Brown",
+    "David Wilson",
+    "Eva Adams",
+    "Fiona Clark",
+    "George Miller"
+]
+
+# Function to search contact using Linear Search
+def search_contact(contact_list, name):
+    name = name.lower()  # case-insensitive
+    for i in range(len(contact_list)):
+        if contact_list[i].lower() == name:
+            return f"Contact '{contact_list[i]}' found at position {i}."
+    return "Contact not found."
+
+# Example Usage:
+search_name = input("Enter contact name to search: ")
+result = search_contact(contacts, search_name)
+print(result)
+
+
+
+
+
+
+
+
+
+
