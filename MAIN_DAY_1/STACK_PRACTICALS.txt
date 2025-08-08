@@ -1,0 +1,287 @@
+1). Create a Stack using List
+-------------------------------------------
+Problem: Create a simple stack using list and perform push, pop, peek operations.
+
+python
+stack = []
+
+# Push operations
+stack.append(10)
+stack.append(20)
+stack.append(30)
+
+# Pop operation
+print("Popped:", stack.pop())
+
+# Peek operation
+print("Top Element:", stack[-1])
+
+# Display stack
+print("Current Stack:", stack)
+
+Output:
+
+Popped: 30
+Top Element: 20
+Current Stack: [10, 20]
+
+
+--------------------------------------------------------------------------------------
+2. Create Stack Class with Push, Pop, Peek, is\_empty, size
+--------------------------------------------------------------------------------------
+Problem: Implement a stack class with all basic operations.
+
+python
+class Stack:
+    def __init__(self):
+        self.items = []
+
+    def push(self, value):
+        self.items.append(value)
+
+    def pop(self):
+        return self.items.pop() if not self.is_empty() else "Underflow"
+
+    def peek(self):
+        return self.items[-1] if not self.is_empty() else "Empty"
+
+    def is_empty(self):
+        return len(self.items) == 0
+
+    def size(self):
+        return len(self.items)
+
+# Test
+s = Stack()
+s.push(100)
+s.push(200)
+print("Top:", s.peek())
+print("Size:", s.size())
+print("Pop:", s.pop())
+print("Is Empty:", s.is_empty())
+
+Output:
+
+Top: 200
+Size: 2
+Pop: 200
+Is Empty: False
+
+--------------------------------------------------------------------------------------
+3. Reverse a String using Stack
+
+Problem: Take a string and reverse it using stack logic.
+
+python
+def reverse_string(string):
+    stack = []
+    for char in string:
+        stack.append(char)
+    
+    reversed_str = ''
+    while stack:
+        reversed_str += stack.pop()
+    
+    return reversed_str
+
+print("Reversed:", reverse_string("PYTHON"))
+
+Output:
+Reversed: NOHTYP
+-----------------------------------------------------------------------------------
+4. Check Balanced Parentheses
+
+Problem: Validate expression for balanced brackets.
+
+python
+
+def is_balanced(expr):
+    stack = []
+    pairs = {')': '(', '}': '{', ']': '['}
+    for char in expr:
+        if char in "([{":
+            stack.append(char)
+        elif char in ")]}":
+            if not stack or stack.pop() != pairs[char]:
+                return False
+    return not stack
+
+print(is_balanced("{[()]}"))   # True
+print(is_balanced("((())"))    # False
+
+Output:
+
+True
+False
+--------------------------------------------------------------------------------------
+5. Decimal to Binary using Stack
+--------------------------------------------------------------------------------------
+ Problem: Convert decimal number to binary using stack.
+
+python
+def decimal_to_binary(n):
+    stack = []
+    while n > 0:
+        stack.append(str(n % 2))
+        n //= 2
+    return ''.join(reversed(stack)) if stack else "0"
+
+print("Binary of 10:", decimal_to_binary(10))
+
+
+ Output:
+
+
+Binary of 10: 1010
+
+--------------------------------------------------------------------------------------
+6) Evaluate Postfix Expression
+
+Problem: Evaluate a postfix expression like `"2 3 * 4 +"`.
+
+python
+
+def evaluate_postfix(expr):
+    stack = []
+    for token in expr.split():
+        if token.isdigit():
+            stack.append(int(token))
+        else:
+            b = stack.pop()
+            a = stack.pop()
+            if token == '+': stack.append(a + b)
+            elif token == '-': stack.append(a - b)
+            elif token == '*': stack.append(a * b)
+            elif token == '/': stack.append(int(a / b))
+    return stack.pop()
+
+print("Result:", evaluate_postfix("2 3 * 4 +"))
+
+Output:
+Result: 10
+---------------------------------------------------------------------------------
+7. Sort Stack using Recursion
+
+Problem: Sort elements inside a stack using only recursion.
+---------------------------------------------------------------------------------
+python
+def insert_sorted(stack, value):
+    if not stack or value > stack[-1]:
+        stack.append(value)
+    else:
+        temp = stack.pop()
+        insert_sorted(stack, value)
+        stack.append(temp)
+
+def sort_stack(stack):
+    if stack:
+        temp = stack.pop()
+        sort_stack(stack)
+        insert_sorted(stack, temp)
+
+s = [30, 10, 20]
+sort_stack(s)
+print("Sorted Stack:", s)
+
+
+Output:
+Sorted Stack: [10, 20, 30]
+---------------------------------------------------------------------------------
+8). Next Greater Element
+Problem: Find the next greater element for each in the array.
+---------------------------------------------------------------------------------
+python
+def next_greater(arr):
+    stack = []
+    result = [-1] * len(arr)
+    for i in range(len(arr)):
+        while stack and arr[i] > arr[stack[-1]]:
+            index = stack.pop()
+            result[index] = arr[i]
+        stack.append(i)
+    return result
+
+print(next_greater([4, 5, 2, 25]))
+
+
+Output:
+
+
+[5, 25, 25, -1]
+---------------------------------------------------------------------------------
+9. Reverse Stack using Recursion
+
+Problem: Reverse the stack using only recursion (no loops, no extra list).
+
+python           
+def insert_at_bottom(stack, item):
+    if not stack:
+        stack.append(item)
+    else:
+        top = stack.pop()
+        insert_at_bottom(stack, item)
+        stack.append(top)
+
+def reverse_stack(stack):
+    if stack:
+        top = stack.pop()
+        reverse_stack(stack)
+        insert_at_bottom(stack, top)
+
+s = [1, 2, 3, 4]
+reverse_stack(s)
+print("Reversed Stack:", s)
+
+
+ Output:
+
+
+Reversed Stack: [4, 3, 2, 1]
+
+
+---------------------------------------------------------------------------------
+
+10. Min Stack (O(1) getMin)
+
+Problem: Design a stack that returns minimum in constant time.
+---------------------------------------------------------------------------------
+python
+class MinStack:
+    def __init__(self):
+        self.main = []
+        self.min_stack = []
+
+    def push(self, val):
+        self.main.append(val)
+        if not self.min_stack or val <= self.min_stack[-1]:
+            self.min_stack.append(val)
+
+    def pop(self):
+        if self.main:
+            if self.main[-1] == self.min_stack[-1]:
+                self.min_stack.pop()
+            return self.main.pop()
+
+    def get_min(self):
+        return self.min_stack[-1] if self.min_stack else None
+
+ms = MinStack()
+ms.push(5)
+ms.push(2)
+ms.push(8)
+print("Min:", ms.get_min())  # 2
+ms.pop()
+print("Min:", ms.get_min())  # 2
+ms.pop()
+print("Min:", ms.get_min())  # 5
+
+
+ Output:
+
+
+Min: 2
+Min: 2
+Min: 5
+
+
+---------------------------------------------------------------------------------

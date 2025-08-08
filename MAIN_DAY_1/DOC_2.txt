@@ -1,11 +1,316 @@
-week 2 :::
-============================
-|  Topic                | What You’ll Learn                              |
-| ------------------------| ------------------------------------------------- |
-| 1. Lists                | Store multiple values, indexing, slicing, methods |
-| 2. Strings              | Handle text, slicing, parsing, operations         |
-| 3. Sets                 | Unique data storage, set operations               |
-| 4. Dicts (Dictionaries) | Key-value storage, fast lookups                   |
-| 5. Slicing & Parsing    | Extract and work with parts of lists/strings      |
+what is data structure :
+-------------------------------------
+Data structures are fundamental building blocks in computer science.
+
+Main Categories of Data Structure 
+-------------------------------------
+1. Linear Data Structures
+    Array (List)
+    Stack
+    Queue
+    Linked List
+
+2. Non-Linear Data Structures
+    Tree
+    Graph
+
+3. Hash-Based Data Structures
+    Hash Table (Dictionary / Map)
+
+=======================================
+1) Array (List)
+-------------------------------------------------------------
+2) Stack 
+    What is a Stack?
+    -------------------------------------------------------------
+    A Stack is a linear data structure that follows the principle:
+
+    LIFO – Last In, First Out
+
+    This means:
+    The last element inserted (pushed) into the stack is the first one to be removed (popped).
+
+    ==> Real-life Examples of Stack:
+
+    A stack of plates — you add (push) a plate on top and remove (pop) from the top.
+
+    Undo operation in text editors – most recent action undone first.
+
+    Backtracking in games or algorithms.
+
+    Stack Core Operations:
+    Operation	Description	Time Complexity
+
+    push()	Add element to the top of stack	O(1)
+    pop()	Remove and return top element	O(1)
+    peek()	Return top element without removing it	O(1)
+    is_empty()	Check if stack is empty	O(1)
+    size()	Return number of elements in stack	O(1)
+
+    Stack Implementation in Python
+
+    ==> 1. Using Python list
+    python
+
+    stack = []
+
+    # Push
+    stack.append(10)
+    stack.append(20)
+    stack.append(30)
+
+    # Pop
+    print(stack.pop())     # 30
+
+    # Peek
+    print(stack[-1])       # 20
+
+    # Is Empty
+    print(len(stack) == 0)  # False
+
+    # Size
+    print(len(stack))      # 2
+    
+    ==> 2. Custom Stack Class (DSA-style)
+    python
+    
+    class Stack:
+        def __init__(self):
+            self.items = []
+
+        def push(self, value):
+            self.items.append(value)
+
+        def pop(self):
+            if not self.is_empty():
+                return self.items.pop()
+            return "Stack Underflow"
+
+        def peek(self):
+            if not self.is_empty():
+                return self.items[-1]
+            return None
+
+        def is_empty(self):
+            return len(self.items) == 0
+
+        def size(self):
+            return len(self.items)
+    Usage:
+    
+    s = Stack()
+    s.push(5)
+    s.push(10)
+    s.push(15)
+
+    print(s.pop())      # Output: 15
+    print(s.peek())     # Output: 10
+    print(s.size())     # 
+    
+    => Stack in DSA Use Cases
+    
+    Expression Evaluation (Postfix/Infix)
+
+    Undo/Redo operations
+
+    Browser Back Functionality
+
+    DFS traversal (Depth First Search)
+
+    =>Reversing a string or number
+
+    ----------------------------------------------------
+    Example: Reverse a String using Stack
+    ----------------------------------------------------
+    def reverse_string(string):
+        stack = []
+        for char in string:
+            stack.append(char)
+
+        reversed_str = ""
+        while stack:
+            reversed_str += stack.pop()
+        
+        return reversed_str
+
+    print(reverse_string("PYTHON"))  # Output: NOHTYP
+-------------------------------------------------------------
+3) Queue 
+
+    what is Queue ?
+    ----------------------------------
+    Queue is a linear data structure that follows the principle:
+
+    FIFO – First In, First Out
+
+    That means:
+    The first element inserted into the queue will be the first one to be removed.
+    ==============================================================
+    => Real-Life Examples of Queues:
+    ==============================================================
+    People standing in a line at a ticket counter 
+
+    Print Queue — first document sent is printed first
+
+    CPU task scheduling – tasks are processed in the order they arrive
+
+    | Operation  | Description                               | Time Complexity |
+    | -----------| ----------------------------------------- | --------------- |
+    | enqueue(x) | Insert an element at the end of the queue | O(1)            |
+    | dequeue()  | Remove and return the front element       | O(1)            |
+    | peek()     | Return the front element without removing | O(1)            |
+    | is_empty() | Check if queue is empty                   | O(1)            |
+    | size()     | Return number of elements in the queue    | O(1)            |
+
+    example 1 :
+    ------------------------------------------------------------
+    ------------------------------------------------------------
+    queue = []
+
+    # Enqueue
+    queue.append(10)
+    queue.append(20)
+
+    # Dequeue
+    print(queue.pop(0))   # Output: 10
+
+    # Peek
+    print(queue[0])       # Output: 20
+
+    # Is Empty
+    print(len(queue) == 0)
+
+    # Size
+    print(len(queue))
+
+    ---------------
+    example 2 :
+    ---------------
+
+    from collections import deque
+
+    queue = deque()
+
+    # Enqueue
+    queue.append(10)
+    queue.append(20)
+    queue.append(30)
+
+    # Dequeue
+    print(queue.popleft())  # Output: 10
+
+    # Peek
+    print(queue[0])         # Output: 20
+
+    # Is Empty
+    print(len(queue) == 0)
+
+    # Size
+    print(len(queue))
+
+    ------------------------
+    example 3:
+    ------------------------
+    class Queue:
+        def __init__(self):
+            self.items = deque()
+
+        def enqueue(self, value):
+            self.items.append(value)
+
+        def dequeue(self):
+            if not self.is_empty():
+                return self.items.popleft()
+            return "Queue Underflow"
+
+        def peek(self):
+            if not self.is_empty():
+                return self.items[0]
+            return None
+
+        def is_empty(self):
+            return len(self.items) == 0
+
+        def size(self):
+            return len(self.items)
+
+    
+-------------------------------------------------------------
+4)  Linked -List :
+    A Linked List is a linear data structure where each element 
+    (called a node) contains:
+
+    Data (value)
+    Reference (link/pointer) to the next node
+
+    Unlike arrays, linked lists do not store elements in contiguous memory. They're dynamic and can grow/shrink efficiently.
+
+    e.g. 
+
+    A train which contain lots of coaches 
+
+    ->each coache has data (passengers)
+    ->A link (coupling) to the next coach. 
+
+    so, the first coach is a head (starting coach)
+
+    each coach knows only next one .
+
+    you can move forward coach by coach to reach the end. 
+
+    this is exactly how singly linked list works !
 
 
+    Visual of a Linked List
+
+    [10 | next] -> [20 | next] -> [30 | next] -> None
+
+    Each box is a node.
+
+    It stores a value (data) and a pointer to the next node.
+    The last node points to None (end of list).
+
+    Node: Contains data and a reference (next) to another node.
+
+    Head: First node in the list.
+
+    You move through the list using these pointers, one at a time.
+
+    Program ::: 
+
+    # Define one coach = node
+    class Node:
+        def __init__(self, data):
+            self.data = data      # Passenger in Coach
+            self.next = None      # Link to next Coach
+
+    # Train = Linked List
+    class LinkedList:
+        def __init__(self):
+            self.head = None  # First Coach (head of train)
+
+    def add(self, data):
+        new_node = Node(data)
+        if not self.head:  # If train is empty
+            self.head = new_node
+            return
+        temp = self.head
+        while temp.next:   # Go to the last Coach
+            temp = temp.next
+        temp.next = new_node  # Link new Coach at the end
+
+    def display(self):
+        temp = self.head
+        while temp:
+            print(temp.data, end=" -> ")
+            temp = temp.next
+        print("None")
+
+    # Test the train
+    train = LinkedList()
+    train.add("Coach A")
+    train.add("Coach B")
+    train.add("Coach C")
+    train.display()
+
+-------------------------------------------------------------

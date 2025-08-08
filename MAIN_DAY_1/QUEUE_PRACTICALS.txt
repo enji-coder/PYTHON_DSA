@@ -1,0 +1,282 @@
+1. Create a Queue using List
+
+Problem: Create a simple queue using list and perform enqueue and dequeue.
+
+python
+
+queue = []
+
+# Enqueue
+queue.append(10)
+queue.append(20)
+queue.append(30)
+
+# Dequeue
+print("Dequeued:", queue.pop(0))
+
+# Peek
+print("Front Element:", queue[0])
+
+# Current Queue
+print("Queue:", queue)
+
+
+Output:
+
+
+Dequeued: 10
+Front Element: 20
+Queue: [20, 30]
+
+Note: `pop(0)` is O(n) — not efficient for large-scale DSA problems.
+
+------------------------------------------------------------------
+2). Queue Using `collections.deque` (Efficient)
+
+Problem: Implement queue using `deque` for O(1) operations.
+
+python
+
+from collections import deque
+
+queue = deque()
+
+# Enqueue
+queue.append(100)
+queue.append(200)
+queue.append(300)
+
+# Dequeue
+print("Dequeued:", queue.popleft())
+
+# Peek
+print("Front:", queue[0])
+
+# Queue
+print("Queue:", list(queue))
+
+
+Output:
+
+Dequeued: 100
+Front: 200
+Queue: [200, 300]
+------------------------------------------------------------------
+3. Queue Class with Enqueue, Dequeue, Peek, is\_empty, Size
+
+Problem: Build your own Queue class.
+
+from collections import deque
+
+class Queue:
+    def __init__(self):
+        self.items = deque()
+
+    def enqueue(self, value):
+        self.items.append(value)
+
+    def dequeue(self):
+        return self.items.popleft() if not self.is_empty() else "Underflow"
+
+    def peek(self):
+        return self.items[0] if not self.is_empty() else "Empty"
+
+    def is_empty(self):
+        return len(self.items) == 0
+
+    def size(self):
+        return len(self.items)
+
+# Test
+q = Queue()
+q.enqueue(10)
+q.enqueue(20)
+q.enqueue(30)
+print("Peek:", q.peek())
+print("Size:", q.size())
+print("Dequeued:", q.dequeue())
+
+Output:
+
+Peek: 10
+Size: 3
+Dequeued: 10
+------------------------------------------------------------------
+4. Circular Queue Implementation
+
+Problem: Implement circular queue with fixed size.
+
+python
+class CircularQueue:
+    def __init__(self, size):
+        self.q = [None]*size
+        self.front = self.rear = -1
+        self.size = size
+
+    def enqueue(self, value):
+        if (self.rear + 1) % self.size == self.front:
+            return "Overflow"
+        elif self.front == -1:
+            self.front = self.rear = 0
+        else:
+            self.rear = (self.rear + 1) % self.size
+        self.q[self.rear] = value
+
+    def dequeue(self):
+        if self.front == -1:
+            return "Underflow"
+        val = self.q[self.front]
+        if self.front == self.rear:
+            self.front = self.rear = -1
+        else:
+            self.front = (self.front + 1) % self.size
+        return val
+
+# Test
+cq = CircularQueue(3)
+cq.enqueue(1)
+cq.enqueue(2)
+cq.enqueue(3)  # Overflow
+print(cq.dequeue())
+cq.enqueue(4)
+print(cq.q)
+
+
+Output:
+1
+[4, 2, 3]
+------------------------------------------------------------------
+5. Reverse First K Elements in a Queue
+Problem: Reverse first `k` elements using stack.
+
+from collections import deque
+
+def reverse_k(queue, k):
+    stack = []
+    for _ in range(k):
+        stack.append(queue.popleft())
+    while stack:
+        queue.append(stack.pop())
+    for _ in range(len(queue) - k):
+        queue.append(queue.popleft())
+    return queue
+
+q = deque([10, 20, 30, 40, 50])
+print("Reversed:", list(reverse_k(q, 3)))
+
+Output:
+Reversed: [30, 20, 10, 40, 50]
+------------------------------------------------------------------
+6. Generate Binary Numbers (1 to N) using Queue
+
+Problem: Use queue to generate first N binary numbers.
+
+python
+
+from collections import deque
+
+def generate_binary(n):
+    q = deque(["1"])
+    for _ in range(n):
+        front = q.popleft()
+        print(front)
+        q.append(front + "0")
+        q.append(front + "1")
+
+generate_binary(5)
+
+Output:
+1
+10
+11
+100
+101
+
+
+---------------------------------------------------------------
+7. Interleave First and Second Half of Queue
+
+Problem: If queue is `[1,2,3,4,5,6]`, interleave as `[1,4,2,5,3,6]`.
+
+python
+
+from collections import deque
+
+def interleave(queue):
+    half = len(queue)//2
+    first_half = deque()
+    for _ in range(half):
+        first_half.append(queue.popleft())
+    while first_half:
+        queue.append(first_half.popleft())
+        queue.append(queue.popleft())
+    return queue
+
+q = deque([1, 2, 3, 4, 5, 6])
+print("Interleaved:", list(interleave(q)))
+
+Output:
+
+
+Interleaved: [1, 4, 2, 5, 3, 6]
+---------------------------------------------------------------
+8. Implement Queue Using Two Stacks
+
+Problem: Simulate queue behavior using two stacks.
+
+python
+
+class QueueUsingStacks:
+    def __init__(self):
+        self.s1 = []
+        self.s2 = []
+
+    def enqueue(self, value):
+        self.s1.append(value)
+
+    def dequeue(self):
+        if not self.s2:
+            while self.s1:
+                self.s2.append(self.s1.pop())
+        return self.s2.pop() if self.s2 else "Underflow"
+
+# Test
+q = QueueUsingStacks()
+q.enqueue(1)
+q.enqueue(2)
+q.enqueue(3)
+print(q.dequeue())  # 1
+print(q.dequeue())  # 2
+
+
+Output:
+1
+2
+---------------------------------------------------------------
+10. First Non-Repeating Character in Stream
+
+Problem: Given stream of characters, 
+print first non-repeating character at every point.
+
+python
+
+from collections import deque
+
+def first_non_repeating(stream):
+    freq = {}
+    q = deque()
+    for ch in stream:
+        freq[ch] = freq.get(ch, 0) + 1
+        q.append(ch)
+        while q and freq[q[0]] > 1:
+            q.popleft()
+        print(q[0] if q else '#', end=' ')
+
+first_non_repeating("aabc")
+
+
+ Output:
+
+
+a a b b 
+---------------------------------------------------------------
