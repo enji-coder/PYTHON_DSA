@@ -1,3 +1,88 @@
+Data structure are fundamental buildding blocks in computer science . 
+
+-----------------------------------
+Main Categories :: 
+
+============================
+1) Linear Data structure 
+2) Non-Linear Data structure
+3) Hash-based Data structure
+
+===============================
+
+1) Linear Data structure
+
+    -> Array (List)
+    -> Stack 
+    -> Queue
+    -> Linked List 
+
+2) Non-Linear Data structure
+
+    -> Tree
+    -> Graph 
+
+3) Hash - based Data structure
+
+    -> Hash table (Dictionary / Map )
+
+====================================
+1) Linear Data structure : 
+
+    data is strored in a straight line. 
+
+    each element has a unique predeecessor  
+
+    travel is done by one by one in a single run. 
+
+    1) Array : fixed size , indexed collection of elements
+    2) List : Dynamic , ordered collection 
+    3) stack : Follow LIFO (LAST IN FIRST OUT)
+    4) Queue : FOLLOW FIFO (FIRST IN FIRST OUT)
+    5) Linked List  : all elements connected via pointers . 
+
+========================================================
+========================================================
+
+
+1) Python Built-in List (Most common subsitute for Array )
+
+ syntax : 
+
+ l1 = [num1,num2,num3..]
+
+ print(l1[0])
+
+2) Python Array module (array module)
+
+syntax : 
+
+    import array 
+
+            array.array('datatype',data)
+    numbers = array.array('i',1,5,2,3,4)
+
+    print(numbers[1])
+
+
+    i : integer 
+    f : float 
+    u : unicode character 
+
+
+3) Numpy Arrays (Advanced Arrays)
+
+    for large amount of data and scientific work we use numpy arrays :
+
+    syntax : 
+
+    import numpy 
+
+    arr = numpy.array([1,2,3])
+    print(arr[0])
+    
+============================================================
+============================================================ 
 ==>> Searching Algorithms
 ==============================
 | Algorithm                | Speed       |  When to Use?               |
