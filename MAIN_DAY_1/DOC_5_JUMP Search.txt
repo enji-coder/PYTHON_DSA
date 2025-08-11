@@ -1,2 +1,80 @@
 3) JUMP SEARCH 
 --------------------------------------------
+What is Jump Search?
+Jump Search is a searching algorithm for sorted arrays.
+Instead of searching one by one like Linear Search, it jumps ahead by a fixed number of steps (let’s call this step_size) and checks in blocks. Once it finds the block that might contain the target element, it performs a linear search inside that block.
+
+=================================================
+2) When to use Jump Search?
+Data must be sorted (ascending or descending).
+
+Good for large datasets where Binary Search isn’t directly applicable 
+(e.g., limited random access in some data structures).
+
+Slightly faster than linear search but slower than binary search.
+
+Time Complexity:
+
+Best Case: O(1) (first check is the target)
+
+Average/Worst Case: O(√n)
+====================================================
+3) How Jump Search Works (Step-by-Step)
+
+[1, 4, 7, 12, 15, 19, 23, 27, 31, 36, 40, 45, 50]
+
+Steps:
+
+Calculate jump size → step_size = int(sqrt(n))
+
+Here, n = 13 → step_size = 3
+
+Jump forward in steps of 3 until we pass the target or reach the end.
+
+Jump 1: index 2 → value 7 (not target, less than 31)
+
+Jump 2: index 5 → value 19 (less than 31)
+
+Jump 3: index 8 → value 31  Found block.
+
+Linear search in the found block.
+
+Block: from index 6 to index 8 → find 31.
+========================================================
+========================================================
+import math
+
+def jump_search(arr, target):
+    n = len(arr)
+    step = int(math.sqrt(n))  # Step size
+    prev = 0
+
+    # Step 1: Jump ahead to find the block
+    while prev < n and arr[min(step, n) - 1] < target:
+        prev = step
+        step += int(math.sqrt(n))
+        if prev >= n:  # Target not in array
+            return -1
+
+    # Step 2: Linear search within the found block
+    while prev < min(step, n):
+        if arr[prev] == target:
+            return prev
+        prev += 1
+
+    return -1  # Target not found
+
+
+# Example Usage
+arr = [1, 4, 7, 12, 15, 19, 23, 27, 31, 36, 40, 45, 50]
+target = 31
+index = jump_search(arr, target)
+
+if index != -1:
+    print(f"Element {target} found at index {index}")
+else:
+    print(f"Element {target} not found")
+
+
+=================================================================
+=================================================================
