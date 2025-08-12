@@ -5,7 +5,6 @@ Input:  10 -> 20 -> 30 -> None
 Output: 30 -> 20 -> 10 -> None
 
 
-
 """
 # Node structure
 class Node:
