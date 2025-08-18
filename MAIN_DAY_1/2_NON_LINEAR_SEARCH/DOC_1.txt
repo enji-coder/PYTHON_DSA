@@ -1,0 +1,21 @@
+What is Non-Linear Search?
+
+In DSA (Data Structures and Algorithms),
+
+A linear search means checking elements one by one in a straight line (like searching in a list).
+
+A non-linear search is when searching does not follow a straight line.
+Instead, it uses a non-linear data structure (like trees, graphs, heaps) or a non-linear searching technique (like binary search in a sorted dataset).
+
+ Simply: Non-linear search jumps, branches, or skips instead of going step-by-step.
+
+ Examples of Non-Linear Search
+
+==================================
+Binary Search (on a sorted list → divide & conquer)
+
+Search in Trees (BST search, DFS, BFS)
+
+Search in Graphs (DFS, BFS)
+
+Hashing (O(1) average time lookup → non-linear because it uses hash table mapping
