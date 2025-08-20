@@ -10,7 +10,16 @@ Instead, it uses a non-linear data structure (like trees, graphs, heaps) or a no
  Simply: Non-linear search jumps, branches, or skips instead of going step-by-step.
 
  Examples of Non-Linear Search
+===================================
+Non-linear Search Algorithms:
 
+Binary Search (works only on sorted arrays)
+
+Jump Search
+
+Interpolation Search
+
+Exponential Search
 ==================================
 Binary Search (on a sorted list → divide & conquer)
 
@@ -19,3 +28,31 @@ Search in Trees (BST search, DFS, BFS)
 Search in Graphs (DFS, BFS)
 
 Hashing (O(1) average time lookup → non-linear because it uses hash table mapping
+
+======================================
+Types of Non-linear Search Algorithms
+1) Binary Search
+
+Works only on sorted arrays.
+
+Idea: Repeatedly divide the array into two halves.
+
+Time Complexity: O(log n)
+
+Python Code:
+
+def binary_search(arr, target):
+    left, right = 0, len(arr) - 1
+
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1
+
+arr = [1, 3, 5, 7, 9, 11, 13]
+print(binary_search(arr, 9))  # Output: 4
