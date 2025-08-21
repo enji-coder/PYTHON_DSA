@@ -1,0 +1,234 @@
+what is hash ??? 
+
+-> which provide always unique object id every object 
+
+===============================
+why we use hash ? 
+
+using of list search it goes one by one (O(n))
+
+hash searching jump directly to when it should be O(1)
+
+===========================================================
+Hashable vs Unhashable
+
+Not everything in Python can be hashed.
+
+print(hash(42))        # works
+print(hash("world"))   # works
+
+# Unhashable examples (mutable)
+print(hash([1,2,3]))   # ❌ TypeError
+print(hash({1:2}))     # ❌ TypeError
+============================================================
+Step 3: Hash in Dictionary (Real Use)
+
+Dictionaries use hash internally.
+
+students = {"roll101": "Anjali", "roll102": "Dhruvil"}
+
+print("roll101" in students)     # True
+print(students["roll101"])       # "Anjali"
+
+# behind the scenes
+print(hash("roll101"))           # Python uses this hash to store
+
+================================================================
+What is a Collision in Hashing?
+
+When we use hashing, we store data in a hash table using a hash function.
+
+The hash function takes a key → computes an index → stores the value in that index.
+
+Collision occurs when two different keys generate the same index.
+
+👉 Example:
+Suppose our hash table size is 5, and we insert keys with this hash function:
+
+index = key % 5
+
+
+Key 10 → 10 % 5 = 0
+
+Key 15 → 15 % 5 = 0
+
+Here, 10 and 15 both map to index 0 → collision!
+
+🔹 Why Collisions Happen?
+
+Limited table size (e.g., only 5 slots, but more than 5 keys).
+
+Hash function overlap (different inputs give same output).
+
+Poor hash function (not spreading keys uniformly).
+
+🔹 How to Handle Collisions? (Collision Resolution Techniques)
+
+There are 2 main categories:
+
+1. Open Hashing (Chaining)
+
+Each index in the hash table stores a linked list (or list in Python).
+
+If multiple keys hash to the same index → store them in the list at that index.
+
+👉 Example in Python:
+
+class HashTable:
+    def __init__(self, size):
+        self.size = size
+        self.table = [[] for _ in range(size)]  # list of lists (chaining)
+
+    def insert(self, key, value):
+        index = key % self.size
+        self.table[index].append((key, value))
+
+    def display(self):
+        for i in range(self.size):
+            print(i, ":", self.table[i])
+
+
+ht = HashTable(5)
+ht.insert(10, "A")
+ht.insert(15, "B")  # collision with 10
+ht.insert(20, "C")  # collision with 10, 15
+ht.insert(7, "D")
+
+ht.display()
+
+
+📌 Output:
+
+0 : [(10, 'A'), (15, 'B'), (20, 'C')]
+1 : []
+2 : []
+3 : []
+4 : [(7, 'D')]
+
+
+Here, 10, 15, and 20 collided but stored in a list at index 0.
+============================================================
+Open Addressing
+
+If a slot is full, find another slot using a probing technique:
+
+Linear Probing → check next empty slot.
+
+Quadratic Probing → check slots with increasing quadratic steps.
+
+Double Hashing → use another hash function to find new slot.
+
+👉 Example: Linear Probing
+
+class HashTableLP:
+    def __init__(self, size):
+        self.size = size
+        self.table = [None] * size
+
+    def insert(self, key, value):
+        index = key % self.size
+        while self.table[index] is not None:
+            index = (index + 1) % self.size  # linear probing
+        self.table[index] = (key, value)
+
+    def display(self):
+        for i, val in enumerate(self.table):
+            print(i, ":", val)
+
+
+ht = HashTableLP(5)
+ht.insert(10, "A")
+ht.insert(15, "B")  # collision
+ht.insert(20, "C")  # another collision
+ht.insert(7, "D")
+
+ht.display()
+
+
+📌 Output:
+
+0 : (10, 'A')
+1 : (15, 'B')
+2 : (20, 'C')
+3 : (7, 'D')
+4 : None
+
+
+✅ Summary:
+
+Collision happens when two keys map to the same index.
+
+We fix it using:
+
+Chaining (linked list at each index)
+
+Open Addressing (probing for next slot)
+
+==================================================================
+magine Your Classroom Lockers
+
+You have 100 lockers in your classroom.
+
+Each student gets a roll number.
+Example: Anjali → 101, Dhruvil → 102, Krisha → 103
+
+Now, how do we decide which locker belongs to whom?
+
+👉 We use a rule (hash function):
+
+locker_number = roll_number % 100
+
+
+Roll 101 → Locker 1
+
+Roll 102 → Locker 2
+
+Roll 103 → Locker 3
+
+So every student knows directly which locker is theirs → they don’t need to search all 100 lockers.
+
+💡 That is a Hash Table!
+
+Locker room (array) → is the hash table
+
+Roll number → is the key
+
+Student’s name inside locker → is the value
+
+Rule (modulus) → is the hash function
+
+🚨 What if 2 students get same locker?
+
+Example:
+
+Roll 115 → 15
+
+Roll 215 → also 15
+
+Both want locker 15 → this is called a collision.
+Solutions:
+
+Keep a list inside locker (so both fit in one locker) → chaining
+
+Or move one to the next empty locker → open addressing
+
+⚡ Why Hash Table is Powerful?
+
+Normally searching a student in 100 lockers = O(n) (check each locker).
+
+With hash table → O(1), because roll number → directly tells locker.
+
+Python Example (same story)
+# Dictionary is a hash table
+students = {
+    101: "Anjali",
+    102: "Dhruvil",
+    103: "Krisha"
+}
+
+print(students[101])   # Anjali  (direct locker access!)
+print(students[102])   # Dhruvil
+
+
+👉 In one line:
+A hash table is like a locker room where a formula decides exactly which locker your stuff goes into → so you can find it instantly.
